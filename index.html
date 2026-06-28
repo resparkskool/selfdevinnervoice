@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trusting Your Inner Voice | Respark Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e27;
+  --bg-card: rgba(255,255,255,0.04);
+  --ink: #f5f3ff;
+  --ink-muted: rgba(245,243,255,0.68);
+  --ink-faint: rgba(245,243,255,0.38);
+  --fire-yellow: #FFD94A;
+  --fire-amber: #FFA826;
+  --fire-orange: #FF7A1A;
+  --fire-red: #FF4C0D;
+  --divider: rgba(255,255,255,0.08);
+  --divider-strong: rgba(255,255,255,0.14);
+  --radius: 8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,122,26,0.12) 0%, transparent 42%),
+    radial-gradient(circle at 85% 20%, rgba(255,168,38,0.10) 0%, transparent 44%),
+    radial-gradient(circle at 50% 95%, rgba(255,76,13,0.09) 0%, transparent 46%),
+    var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,14,39,0.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--divider);
+  padding:0 32px;
+}
+.nav-inner{
+  max-width:1000px;margin:0 auto;
+  display:flex;align-items:center;gap:6px;
+  flex-wrap:wrap;padding:12px 0;
+}
+.nav-brand{
+  font-family:'Fraunces',serif;font-style:italic;font-size:17px;
+  color:var(--fire-amber);margin-right:16px;white-space:nowrap;
+}
+.nav-btn{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  padding:7px 13px;border-radius:100px;
+  border:1px solid var(--divider-strong);
+  background:transparent;color:var(--ink-faint);
+  cursor:pointer;transition:all 0.18s;white-space:nowrap;
+}
+.nav-btn:hover{border-color:var(--fire-amber);color:var(--fire-amber);}
+.nav-btn.active{
+  background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));
+  border-color:transparent;color:#fff;
+  box-shadow:0 4px 18px rgba(255,76,13,0.38);
+}
+
+/* ── PAGES ── */
+.page{display:none;animation:fadeUp 0.3s ease;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── CONTAINER ── */
+.wrap{max-width:860px;margin:0 auto;padding:64px 40px 100px;}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:72px 0 80px;border-bottom:1px solid var(--divider);}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--fire-amber);margin-bottom:28px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';width:40px;height:1px;background:var(--fire-amber);
+}
+.hero h1{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(48px,8vw,88px);line-height:1.0;
+  letter-spacing:-0.02em;margin-bottom:20px;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--fire-yellow),var(--fire-amber) 40%,var(--fire-orange) 72%,var(--fire-red));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+  font-size:clamp(16px,2.2vw,21px);color:var(--ink-muted);
+  max-width:540px;margin:0 auto 36px;
+}
+.hero-meta{
+  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
+  padding-top:36px;border-top:1px solid var(--divider);
+}
+.hero-meta span strong{color:var(--ink-muted);margin-left:6px;}
+
+/* ── SECTION HEADINGS ── */
+.sec-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:12px;margin-top:64px;
+}
+.sec-title{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-size:clamp(30px,4.5vw,46px);line-height:1.08;
+  letter-spacing:-0.015em;margin-bottom:40px;
+}
+.sec-title em{font-style:italic;color:var(--fire-amber);}
+
+/* ── CARDS ── */
+.card{
+  background:var(--bg-card);border:1px solid var(--divider);
+  border-radius:var(--radius);padding:32px;margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:-48px;right:-48px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,122,26,0.12),transparent 70%);
+  pointer-events:none;
+}
+.card-title{
+  font-family:'Fraunces',serif;font-weight:400;font-size:22px;
+  color:var(--ink);margin-bottom:8px;
+}
+.card-title em{font-style:italic;font-weight:300;}
+.card p{font-size:15.5px;color:var(--ink-muted);line-height:1.65;margin-bottom:12px;}
+.card p:last-child{margin-bottom:0;}
+
+/* ── FLAME CALLOUT ── */
+.flame-callout{
+  margin:32px 0;padding:24px 28px;
+  border-left:3px solid var(--fire-orange);
+  background:rgba(255,122,26,0.06);border-radius:0 var(--radius) var(--radius) 0;
+  font-family:'Fraunces',serif;font-style:italic;font-size:18px;
+  color:var(--ink);line-height:1.55;
+}
+
+/* ── TWO-COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0;}
+.col-card{
+  background:var(--bg-card);border:1px solid var(--divider);
+  border-radius:var(--radius);padding:24px;
+}
+.col-card h3{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.col-card ul{list-style:none;padding:0;}
+.col-card li{
+  font-size:15px;color:var(--ink-muted);padding:8px 0;
+  border-bottom:1px solid var(--divider);line-height:1.5;
+}
+.col-card li:last-child{border-bottom:none;}
+.col-card li::before{
+  content:'';display:inline-block;width:12px;height:1px;
+  background:var(--fire-amber);margin-right:12px;vertical-align:middle;
+}
+
+/* ── NUMBERED LIST ── */
+.n-list{list-style:none;padding:0;counter-reset:nl;}
+.n-list li{
+  counter-increment:nl;padding:16px 0 16px 52px;position:relative;
+  border-bottom:1px solid var(--divider);font-size:15.5px;
+  color:var(--ink-muted);line-height:1.6;
+}
+.n-list li:last-child{border-bottom:none;}
+.n-list li::before{
+  content:counter(nl,decimal-leading-zero);
+  position:absolute;left:0;top:16px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--fire-amber);font-weight:600;
+}
+.n-list li strong{color:var(--ink);}
+
+/* ── ASSESSMENT ── */
+.assess-group{margin-bottom:32px;}
+.assess-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--fire-orange);margin-bottom:12px;
+}
+.assess-item{
+  display:flex;align-items:center;gap:16px;
+  padding:12px 0;border-bottom:1px solid var(--divider);
+}
+.assess-item:last-child{border-bottom:none;}
+.assess-item span{font-size:15px;color:var(--ink-muted);flex:1;line-height:1.5;}
+.score-btns{display:flex;gap:6px;flex-shrink:0;}
+.score-btn{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--divider-strong);background:transparent;
+  color:var(--ink-faint);font-family:'JetBrains Mono',monospace;
+  font-size:11px;cursor:pointer;transition:all 0.15s;
+}
+.score-btn:hover{border-color:var(--fire-amber);color:var(--fire-amber);}
+.score-btn.selected{
+  background:linear-gradient(135deg,var(--fire-amber),var(--fire-orange));
+  border-color:transparent;color:#fff;
+}
+.score-result{
+  margin-top:24px;padding:20px 24px;
+  border-radius:var(--radius);border:1px solid var(--divider-strong);
+  background:var(--bg-card);font-size:15px;color:var(--ink-muted);
+  display:none;
+}
+.score-result.visible{display:block;}
+.score-result strong{color:var(--ink);}
+.score-total{
+  font-family:'Fraunces',serif;font-size:42px;font-weight:300;
+  background:linear-gradient(135deg,var(--fire-yellow),var(--fire-orange));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:4px;
+}
+
+/* ── WRITING SPACE ── */
+.write-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--fire-amber);margin-top:20px;margin-bottom:10px;
+}
+.write-box{
+  width:100%;min-height:120px;padding:20px 22px;
+  background:rgba(255,255,255,0.02);
+  border:1px dashed var(--divider-strong);border-radius:var(--radius);
+  color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;
+  line-height:1.65;resize:vertical;transition:border-color 0.2s;
+}
+.write-box:focus{outline:none;border-color:var(--fire-amber);}
+.write-box::placeholder{color:var(--ink-faint);font-style:italic;}
+
+/* ── FRAMEWORK ── */
+.respark-row{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:20px 0;border-bottom:1px solid var(--divider);
+}
+.respark-letter{
+  font-family:'Fraunces',serif;font-weight:200;font-size:64px;
+  line-height:0.9;flex-shrink:0;width:56px;text-align:center;
+}
+.respark-row:nth-child(7n+1) .respark-letter{color:var(--fire-yellow);}
+.respark-row:nth-child(7n+2) .respark-letter{color:var(--fire-amber);}
+.respark-row:nth-child(7n+3) .respark-letter{color:var(--fire-orange);}
+.respark-row:nth-child(7n+4) .respark-letter{color:var(--fire-red);}
+.respark-row:nth-child(7n+5) .respark-letter{color:var(--fire-yellow);}
+.respark-row:nth-child(7n+6) .respark-letter{color:var(--fire-amber);}
+.respark-row:nth-child(7n+0) .respark-letter{color:var(--fire-orange);}
+.respark-content{padding-top:8px;}
+.respark-name{
+  font-family:'Fraunces',serif;font-size:20px;font-weight:400;
+  color:var(--ink);margin-bottom:4px;
+}
+.respark-name em{font-style:italic;font-weight:300;}
+.respark-body{font-size:15px;color:var(--ink-muted);line-height:1.6;}
+
+/* ── TRUST FRAMEWORK ── */
+.trust-grid{
+  display:grid;grid-template-columns:56px 1fr;gap:0;
+  border:1px solid var(--divider);border-radius:var(--radius);overflow:hidden;
+  margin:28px 0;
+}
+.trust-cell-letter{
+  background:linear-gradient(180deg,rgba(255,122,26,0.15),rgba(255,76,13,0.08));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:32px;font-weight:200;
+  border-bottom:1px solid var(--divider);
+  padding:20px 0;
+}
+.trust-cell-letter:last-of-type{border-bottom:none;}
+.trust-cell-content{
+  padding:18px 24px;border-bottom:1px solid var(--divider);
+}
+.trust-cell-content:last-child{border-bottom:none;}
+.trust-cell-title{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--fire-amber);margin-bottom:6px;
+}
+.trust-cell-body{font-size:14.5px;color:var(--ink-muted);line-height:1.6;}
+
+/* ── VOICE MAP ── */
+.voice-types{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+.voice-card{
+  padding:20px;background:var(--bg-card);
+  border:1px solid var(--divider);border-radius:var(--radius);
+}
+.voice-card h4{
+  font-family:'Fraunces',serif;font-size:16px;font-weight:400;
+  color:var(--ink);margin-bottom:8px;
+}
+.voice-card p{font-size:13.5px;color:var(--ink-faint);line-height:1.55;}
+
+/* ── CHECKLIST ── */
+.check-list{list-style:none;padding:0;}
+.check-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--divider);
+  cursor:pointer;
+}
+.check-item:last-child{border-bottom:none;}
+.check-box{
+  width:20px;height:20px;min-width:20px;border-radius:4px;
+  border:1.5px solid var(--divider-strong);margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.check-item.checked .check-box{
+  background:linear-gradient(135deg,var(--fire-amber),var(--fire-orange));
+  border-color:transparent;
+}
+.check-item.checked .check-box::after{content:'✓';color:#fff;font-size:11px;}
+.check-item span{font-size:15px;color:var(--ink-muted);line-height:1.55;transition:color 0.15s;}
+.check-item.checked span{color:var(--ink-faint);text-decoration:line-through;}
+
+/* ── 30-DAY GRID ── */
+.week-block{margin-bottom:32px;}
+.week-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--fire-orange);padding:10px 16px;
+  background:rgba(255,122,26,0.07);border-radius:4px;
+  margin-bottom:16px;
+}
+.day-item{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--divider);
+  cursor:pointer;
+}
+.day-item:last-child{border-bottom:none;}
+.day-num{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--fire-amber);min-width:42px;margin-top:1px;font-weight:600;
+}
+.day-content{flex:1;}
+.day-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.day-desc{font-size:13.5px;color:var(--ink-faint);line-height:1.55;}
+.day-check{
+  width:22px;height:22px;min-width:22px;border-radius:50%;
+  border:1.5px solid var(--divider-strong);margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.day-item.done .day-check{
+  background:linear-gradient(135deg,var(--fire-amber),var(--fire-orange));
+  border-color:transparent;
+}
+.day-item.done .day-check::after{content:'✓';color:#fff;font-size:10px;}
+.day-item.done .day-title{color:var(--ink-faint);text-decoration:line-through;}
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--divider);border-radius:var(--radius);
+  overflow:hidden;margin:24px 0;
+}
+.compare-col{}
+.compare-head{
+  padding:14px 20px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+  text-align:center;
+}
+.compare-head.left{background:rgba(255,168,38,0.12);color:var(--fire-amber);border-right:1px solid var(--divider);}
+.compare-head.right{background:rgba(255,76,13,0.08);color:var(--fire-red);}
+.compare-row{display:grid;grid-template-columns:1fr 1fr;}
+.compare-cell{
+  padding:13px 20px;font-size:14px;color:var(--ink-muted);
+  border-top:1px solid var(--divider);line-height:1.5;
+}
+.compare-cell:first-child{border-right:1px solid var(--divider);}
+
+/* ── DECLARATION ── */
+.declaration{
+  background:linear-gradient(135deg,rgba(255,122,26,0.07),rgba(255,168,38,0.05) 50%,rgba(255,76,13,0.07));
+  border:1px solid var(--divider-strong);border-radius:var(--radius);
+  padding:44px;margin-top:48px;
+}
+.declaration h2{
+  font-family:'Fraunces',serif;font-weight:300;font-size:32px;
+  margin-bottom:32px;
+}
+.declaration h2 em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--fire-yellow),var(--fire-orange));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.decl-field{margin-bottom:24px;}
+.decl-field label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.26em;text-transform:uppercase;
+  color:var(--fire-amber);display:block;margin-bottom:8px;
+}
+.decl-input{
+  width:100%;padding:14px 18px;background:rgba(255,255,255,0.03);
+  border:1px solid var(--divider-strong);border-radius:6px;
+  color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;
+  transition:border-color 0.2s;
+}
+.decl-input:focus{outline:none;border-color:var(--fire-amber);}
+.decl-input::placeholder{color:var(--ink-faint);}
+textarea.decl-input{min-height:100px;resize:vertical;line-height:1.6;}
+
+/* ── COPY BTN ── */
+.copy-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  padding:12px 22px;border-radius:100px;cursor:pointer;
+  background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));
+  border:none;color:#fff;margin-top:20px;
+  box-shadow:0 4px 20px rgba(255,76,13,0.3);
+  transition:all 0.2s;
+}
+.copy-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(255,76,13,0.42);}
+.copy-btn.copied{background:rgba(255,255,255,0.1);box-shadow:none;color:var(--ink-faint);}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:rgba(10,14,39,0.9);backdrop-filter:blur(12px);
+  border-top:1px solid var(--divider);padding:12px 32px;
+  display:flex;align-items:center;gap:20px;
+}
+.progress-label{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
+  white-space:nowrap;
+}
+.progress-bar{
+  flex:1;height:4px;border-radius:100px;
+  background:rgba(255,255,255,0.08);overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--fire-yellow),var(--fire-orange),var(--fire-red));
+  transition:width 0.4s ease;
+}
+.progress-pct{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--fire-amber);font-weight:600;white-space:nowrap;
+}
+
+/* ── SAVE PILL ── */
+.save-pill{
+  position:fixed;bottom:60px;right:24px;z-index:300;
+  padding:9px 16px;border-radius:100px;
+  background:rgba(20,25,56,0.95);border:1px solid var(--divider-strong);
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--fire-amber);opacity:0;transition:opacity 0.3s;
+}
+.save-pill::before{content:'● ';color:var(--fire-amber);}
+.save-pill.show{opacity:1;}
+
+/* ── BODY SCAN INTERACTIVE ── */
+.body-map{
+  display:flex;flex-direction:column;gap:12px;margin:24px 0;
+}
+.body-zone{
+  padding:16px 20px;background:var(--bg-card);
+  border:1px solid var(--divider);border-radius:var(--radius);
+  cursor:pointer;transition:all 0.18s;
+}
+.body-zone.active{border-color:var(--fire-amber);background:rgba(255,168,38,0.06);}
+.body-zone-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--fire-amber);
+  margin-bottom:6px;
+}
+.body-zone-question{font-size:14.5px;color:var(--ink-muted);}
+.body-zone-input{
+  width:100%;margin-top:12px;padding:12px 16px;
+  background:rgba(255,255,255,0.03);
+  border:1px dashed var(--divider-strong);border-radius:6px;
+  color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;
+  display:none;
+}
+.body-zone.active .body-zone-input{display:block;}
+.body-zone-input:focus{outline:none;border-color:var(--fire-amber);}
+.body-zone-input::placeholder{color:var(--ink-faint);font-style:italic;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:680px){
+  .wrap{padding:48px 20px 100px;}
+  .two-col,.voice-types,.compare-wrap{grid-template-columns:1fr;}
+  .compare-cell:first-child{border-right:none;}
+  .nav-inner{gap:4px;}
+  .nav-brand{display:none;}
+  .trust-grid{grid-template-columns:44px 1fr;}
+}
+
+/* ── PRINT ── */
+@media print{
+  .nav,.progress-wrap,.save-pill,.copy-btn{display:none!important;}
+  .page{display:block!important;}
+  body{background:white;color:#1a1a2e;}
+  .card,.col-card,.compare-cell,.body-zone{background:#f9f7ff;border-color:#ddd;}
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  border-top:1px solid var(--divider);
+  padding:40px 32px 120px;
+  text-align:center;
+}
+.site-footer-inner{
+  max-width:860px;margin:0 auto;
+}
+.footer-brand{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:20px;color:var(--fire-amber);
+  display:block;margin-bottom:20px;
+  text-decoration:none;
+}
+.footer-brand:hover{color:var(--fire-yellow);}
+.footer-links{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:8px 24px;
+  margin-bottom:20px;
+}
+.footer-links a{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ink-faint);text-decoration:none;transition:color 0.18s;
+}
+.footer-links a:hover{color:var(--fire-amber);}
+.footer-address{
+  font-size:13px;color:var(--ink-faint);line-height:1.7;
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  letter-spacing:0.1em;
+}
+.footer-address a{color:var(--ink-faint);text-decoration:none;}
+.footer-address a:hover{color:var(--fire-amber);}
+.footer-copy{
+  margin-top:16px;font-size:12px;color:rgba(245,243,255,0.22);
+  font-family:'JetBrains Mono',monospace;letter-spacing:0.12em;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="https://www.skool.com/respark" target="_blank" rel="noopener" style="text-decoration:none;">Respark</a>
+    <button class="nav-btn active" data-page="intro">Intro</button>
+    <button class="nav-btn" data-page="understand">Inner Voice</button>
+    <button class="nav-btn" data-page="static">Clear Static</button>
+    <button class="nav-btn" data-page="intuition">Intuition</button>
+    <button class="nav-btn" data-page="body">Body Wisdom</button>
+    <button class="nav-btn" data-page="decisions">Decisions</button>
+    <button class="nav-btn" data-page="authority">Authority</button>
+    <button class="nav-btn" data-page="challenge">30 Days</button>
+    <button class="nav-btn" data-page="declaration">Declaration</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     PAGE: INTRO
+══════════════════════════════════════════ -->
+<div class="page active" id="page-intro">
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-eyebrow"><a href="https://www.skool.com/respark" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Respark</a> Premium &nbsp;·&nbsp; Self Discovery Series</div>
+    <h1>Trusting Your<br><em>Inner Voice</em></h1>
+    <p class="hero-sub">A complete guide to self-trust and intuitive decision making — built for the work you're doing inside <a href="https://www.skool.com/respark" target="_blank" rel="noopener" style="color:inherit;">Respark</a>.</p>
+    <div class="hero-meta">
+      <span>CHAPTERS <strong>8</strong></span>
+      <span>DAILY PRACTICE <strong>INCLUDED</strong></span>
+      <span>30-DAY CHALLENGE <strong>INSIDE</strong></span>
+      <span>TIER <strong>PREMIUM</strong></span>
+    </div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:56px;">/ A Note Before You Begin</div>
+  <div class="card">
+    <p>This Artifact is yours. Every field, every reflection, every response you write here is part of your personal work — not performance, not an assignment. There are no right answers. There's only what's true for you right now.</p>
+    <div class="flame-callout">You didn't lose your inner voice. It's been there the whole time — waiting beneath the noise. You don't need to become someone new. You need to remember who you already are.</div>
+    <p>This is the <a href="https://www.skool.com/respark" target="_blank" rel="noopener" style="color:inherit;">Respark</a> work in its most personal form. Move through it at your own pace. Some chapters will take minutes. Others will stay with you for days. Both are right.</p>
+    <p style="color:var(--ink-faint);font-size:14px;margin-top:16px;">— Alena & Orlando</p>
+  </div>
+
+  <div class="sec-eyebrow">/ What This Artifact Covers</div>
+  <div class="sec-title">Eight chapters.<br><em>One fire reignited.</em></div>
+
+  <ul class="n-list">
+    <li><strong>Understanding Your Inner Voice</strong> — What it is, how it speaks, and the real cost of looking everywhere else for answers.</li>
+    <li><strong>Clearing the Static</strong> — Mapping the voices in your head and learning which ones are actually yours.</li>
+    <li><strong>Intuition Strengthening</strong> — Daily exercises to develop and trust your intuitive signals over time.</li>
+    <li><strong>Body Wisdom Development</strong> — Your body is a guidance system. This chapter teaches you to read it.</li>
+    <li><strong>Decision-Making Confidence</strong> — The TRUST framework, values-based filtering, and working through paralysis.</li>
+    <li><strong>Internal vs. External Authority</strong> — Setting boundaries with others' opinions and building internal authority.</li>
+    <li><strong>The 30-Day Self-Trust Challenge</strong> — A full four-week program, built day by day.</li>
+    <li><strong>Your Inner Voice Declaration</strong> — The final commitment you make to yourself when you're ready.</li>
+  </ul>
+
+  <div class="sec-eyebrow" style="margin-top:56px;">/ How to Use This</div>
+  <div class="two-col">
+    <div class="col-card">
+      <h3 style="color:var(--fire-amber);">/ The Practice</h3>
+      <ul>
+        <li>Work through chapters in order — each builds on the last</li>
+        <li>Set 15–30 minutes aside. Don't rush.</li>
+        <li>Find a quiet space before you open it</li>
+        <li>Your answers save automatically as you type</li>
+        <li>Return to any chapter anytime — this lives here</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-orange);">/ What to Bring</h3>
+      <ul>
+        <li>Honesty over polish — write what's real</li>
+        <li>Patience — self-trust is built, not switched on</li>
+        <li>Willingness to sit with discomfort</li>
+        <li>Compassion for where you are right now</li>
+        <li>Curiosity, not judgment</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: UNDERSTAND YOUR INNER VOICE
+══════════════════════════════════════════ -->
+<div class="page" id="page-understand">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 1</div>
+  <div class="sec-title">Understanding Your<br><em>Inner Voice</em></div>
+
+  <div class="card">
+    <div class="card-title">What Is Your Inner Voice?</div>
+    <p>Your inner voice is your integrated wisdom — the combination of your intuition, values, lived experience, and deep knowing that guides you toward what's actually right for you. It's not the voice of fear, anxiety, or self-criticism. It's not the internalized voices of parents, culture, or social pressure. It's your authentic guidance system.</p>
+    <div class="flame-callout">In our hyperconnected world, we've become experts at reading the room and beginners at reading ourselves.</div>
+    <p>It might feel like a quiet knowing about what's right. A sense of expansion or contraction when you consider a choice. Sudden clarity. A feeling of alignment — or the opposite. That's the voice.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ When It Goes Quiet</div>
+  <div class="card">
+    <div class="card-title">Signs You've Lost Touch</div>
+    <p>Check every statement that currently feels true for you.</p>
+    <ul class="check-list" id="losttouch-list">
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I feel lost when I'm alone with my thoughts</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I compare myself constantly to others — online and off</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I feel like I'm living someone else's life</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I don't trust my first instincts</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I feel like I need permission to make changes in my life</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I frequently ask others what they think before I decide anything</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I change my mind based on others' reactions</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I struggle to separate what I want from what I think I should want</span></li>
+      <li class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span>I often regret decisions I made based on others' advice</span></li>
+    </ul>
+  </div>
+
+  <div class="sec-eyebrow">/ The Assessment</div>
+  <div class="sec-title" style="font-size:28px;margin-bottom:24px;">Rate each statement <em>1–5</em></div>
+  <p style="color:var(--ink-faint);font-size:14px;margin-bottom:32px;">1 = Never true &nbsp;·&nbsp; 3 = Sometimes &nbsp;·&nbsp; 5 = Always true</p>
+
+  <div class="assess-group">
+    <div class="assess-label">/ Intuitive Awareness</div>
+    <div class="assess-item" data-group="a1"><span>I notice gut feelings about people and situations</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a1"><span>I can sense when something feels "off" even if I can't explain why</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a1"><span>I trust my first impressions</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a1"><span>I pay attention to physical sensations when making decisions</span><div class="score-btns"></div></div>
+  </div>
+
+  <div class="assess-group">
+    <div class="assess-label">/ Internal Authority</div>
+    <div class="assess-item" data-group="a2"><span>I make decisions based on what feels right to me</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a2"><span>I trust my judgment even when others disagree</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a2"><span>I rarely second-guess myself after making a decision</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a2"><span>I feel confident in my ability to know what's best for me</span><div class="score-btns"></div></div>
+  </div>
+
+  <div class="assess-group">
+    <div class="assess-label">/ Boundary with External Influence</div>
+    <div class="assess-item" data-group="a3"><span>I can listen to advice without feeling obligated to follow it</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a3"><span>I don't change my mind easily based on others' opinions</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a3"><span>I feel comfortable making decisions that others might not understand</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a3"><span>I rarely seek others' approval to feel confident in my choices</span><div class="score-btns"></div></div>
+  </div>
+
+  <div class="assess-group">
+    <div class="assess-label">/ Self-Trust</div>
+    <div class="assess-item" data-group="a4"><span>I believe my inner guidance is reliable</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a4"><span>I feel confident in my decision-making abilities</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a4"><span>I trust myself to handle whatever comes from my choices</span><div class="score-btns"></div></div>
+    <div class="assess-item" data-group="a4"><span>I feel connected to my authentic desires and needs</span><div class="score-btns"></div></div>
+  </div>
+
+  <div class="score-result" id="score-result-1">
+    <div class="score-total" id="score-total-1">—</div>
+    <strong id="score-label-1"></strong>
+    <p id="score-desc-1" style="margin-top:8px;"></p>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:56px;">/ Reflection</div>
+  <div class="card">
+    <div class="write-label">/ When did you last make a decision based purely on your own inner knowing — no one else's input?</div>
+    <textarea class="write-box" placeholder="Write what comes up. Don't edit yourself..." data-key="ch1-r1"></textarea>
+
+    <div class="write-label">/ What voices from your past still shape your decisions today?</div>
+    <textarea class="write-box" placeholder="Parents, teachers, culture, an old partner..." data-key="ch1-r2"></textarea>
+
+    <div class="write-label">/ What would change if you trusted yourself completely?</div>
+    <textarea class="write-box" placeholder="Don't think too long — write the first thing that comes." data-key="ch1-r3"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: CLEAR THE STATIC
+══════════════════════════════════════════ -->
+<div class="page" id="page-static">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 2</div>
+  <div class="sec-title">Clearing<br><em>the Static</em></div>
+
+  <div class="card">
+    <p>Before you can hear your inner voice clearly, you have to clear the static — all the other voices, opinions, and influences that create noise in your internal guidance system. Most of us have an entire committee in our heads before we even ask ourselves what we think.</p>
+  </div>
+
+  <div class="sec-eyebrow">/ The Committee in Your Head</div>
+  <div class="voice-types">
+    <div class="voice-card"><h4>The Critic</h4><p>Points out flaws. Anticipates failure. Sounds authoritative. Usually isn't.</p></div>
+    <div class="voice-card"><h4>The Pleaser</h4><p>Wants everyone comfortable. Will sacrifice your truth to keep the peace.</p></div>
+    <div class="voice-card"><h4>The Perfectionist</h4><p>Demands flawless outcomes before you're "allowed" to begin.</p></div>
+    <div class="voice-card"><h4>The Worrier</h4><p>Specializes in worst-case scenarios. Catastrophizes quietly, constantly.</p></div>
+    <div class="voice-card"><h4>The Comparer</h4><p>Measures everything against everyone else. Social media is its best friend.</p></div>
+    <div class="voice-card"><h4>The Rebel</h4><p>Reacts against authority. Sometimes useful — often not the same as your real voice.</p></div>
+  </div>
+
+  <div class="sec-eyebrow">/ Voice Mapping</div>
+  <div class="card">
+    <p>For one week, pay attention to the different voices in your head. When you notice internal dialogue, use this space to capture it.</p>
+    <div class="write-label">/ A voice I heard recently — and whose it sounds like</div>
+    <textarea class="write-box" placeholder='Example: "You\'re not qualified for that." Sounds like my father. Makes me feel small. Harmful.' data-key="ch2-voice1"></textarea>
+    <div class="write-label">/ Another voice I keep hearing</div>
+    <textarea class="write-box" placeholder="Write it out. Name where it came from." data-key="ch2-voice2"></textarea>
+    <div class="write-label">/ Which voices serve me? Which limit me?</div>
+    <textarea class="write-box" placeholder="Be honest. Some voices have protected you in the past even if they limit you now." data-key="ch2-voice3"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Inherited Voices Inventory</div>
+  <div class="two-col">
+    <div class="col-card">
+      <h3 style="color:var(--fire-amber);">/ Parental Voices</h3>
+      <ul>
+        <li>What did your mother's voice tell you about yourself?</li>
+        <li>What did your father's voice tell you about the world?</li>
+        <li>Which of those messages still run in the background?</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-orange);">/ Cultural Voices</h3>
+      <ul>
+        <li>What has society told you to want?</li>
+        <li>What has your culture expected of you?</li>
+        <li>What has social media suggested you should be?</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px;">
+    <div class="write-label">/ The inherited voice I most want to release</div>
+    <textarea class="write-box" placeholder='Write it out: "This is not my voice. This is ___\'s voice. I no longer need this guidance."' data-key="ch2-release"></textarea>
+    <div class="write-label">/ My own voice says instead:</div>
+    <textarea class="write-box" placeholder="Write your replacement. Make it yours." data-key="ch2-replace"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Validation Detox</div>
+  <div class="card">
+    <div class="card-title">The Four-Week Plan</div>
+    <ul class="n-list">
+      <li><strong>Week 1 — Awareness.</strong> Notice every time you seek validation. Write down what you're seeking it for, and how you feel before and after.</li>
+      <li><strong>Week 2 — Pause.</strong> Before seeking validation, stop and ask: "What do I actually think about this?" Sit with that before asking anyone else.</li>
+      <li><strong>Week 3 — Internal checking.</strong> When you want someone else's opinion, ask yourself first. Write your own answer before consulting others.</li>
+      <li><strong>Week 4 — Self-validation.</strong> Practice validating your own experiences. Make at least one decision per day with no external input.</li>
+    </ul>
+    <div class="write-label">/ What am I most afraid of losing if I stop seeking external validation?</div>
+    <textarea class="write-box" placeholder="Go deeper than the first answer." data-key="ch2-fear"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Creating Inner Quiet</div>
+  <div class="card">
+    <div class="card-title">Daily Silence Practice</div>
+    <div class="two-col">
+      <div class="col-card">
+        <h3 style="color:var(--fire-amber);">/ Morning (10 min)</h3>
+        <ul>
+          <li>Sit quietly before any screens</li>
+          <li>Focus on your breath</li>
+          <li>When thoughts arise, notice without judging</li>
+          <li>End with: "What do I need to know today?"</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-orange);">/ Evening (10 min)</h3>
+        <ul>
+          <li>Review the day quietly</li>
+          <li>Notice when you trusted yourself</li>
+          <li>Notice when you reached for external input</li>
+          <li>Ask: "What did I learn about myself today?"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="write-label">/ When do I feel most connected to my authentic self?</div>
+    <textarea class="write-box" placeholder="What are the conditions? Time of day, environment, state of mind?" data-key="ch2-connected"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: INTUITION
+══════════════════════════════════════════ -->
+<div class="page" id="page-intuition">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 3</div>
+  <div class="sec-title">Intuition<br><em>Strengthening</em></div>
+
+  <div class="flame-callout" style="margin-bottom:32px;">Your intuition is like a muscle — the more you use it, the stronger it gets. But before you can strengthen it, you have to learn what it actually feels like, versus what fear feels like.</div>
+
+  <div class="sec-eyebrow">/ Intuition vs. Fear</div>
+  <div class="compare-wrap">
+    <div class="compare-col">
+      <div class="compare-head left">Intuition Feels Like</div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head right">Fear Feels Like</div>
+    </div>
+    <div class="compare-row"><div class="compare-cell">Calm knowing</div><div class="compare-cell">Urgency and panic</div></div>
+    <div class="compare-row"><div class="compare-cell">Expansion in your body</div><div class="compare-cell">Contraction in your body</div></div>
+    <div class="compare-row"><div class="compare-cell">Clarity without needing to analyze</div><div class="compare-cell">Need to control outcomes</div></div>
+    <div class="compare-row"><div class="compare-cell">Peaceful certainty</div><div class="compare-cell">Repetitive worry thoughts</div></div>
+    <div class="compare-row"><div class="compare-cell">Aligned with your values</div><div class="compare-cell">Reactivity to perceived threats</div></div>
+    <div class="compare-row"><div class="compare-cell">Opens possibilities</div><div class="compare-cell">Limits possibilities</div></div>
+    <div class="compare-row"><div class="compare-cell">Emotionally neutral</div><div class="compare-cell">Emotionally charged</div></div>
+  </div>
+
+  <div class="sec-eyebrow">/ The Intuition vs. Fear Check</div>
+  <div class="card">
+    <p>Think of a decision you're currently facing. For each check below, answer honestly about what you're actually experiencing — not what you think you should experience.</p>
+    <div class="write-label">/ The decision I'm sitting with right now</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Name it plainly." data-key="ch3-decision"></textarea>
+    <div class="write-label">/ Body check — expansion or contraction?</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Where do you feel it? What does it feel like physically?" data-key="ch3-body"></textarea>
+    <div class="write-label">/ Emotion check — peaceful or anxious?</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Be specific. Which option brings which feeling?" data-key="ch3-emotion"></textarea>
+    <div class="write-label">/ Based on this check — what does your intuition say?</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Not what you think you should do. What do you know?" data-key="ch3-knowing"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ The TRUST Method</div>
+  <div class="trust-grid">
+    <div class="trust-cell-letter" style="color:var(--fire-yellow);">T</div>
+    <div class="trust-cell-content"><div class="trust-cell-title">Tune In</div><div class="trust-cell-body">Create quiet space. Connect with your breath. Center yourself in the present moment before anything else.</div></div>
+    <div class="trust-cell-letter" style="color:var(--fire-amber);">R</div>
+    <div class="trust-cell-content"><div class="trust-cell-title">Reflect on Options</div><div class="trust-cell-body">Clearly define your choices. Avoid overthinking. Stay open to all possibilities — even the ones that scare you.</div></div>
+    <div class="trust-cell-letter" style="color:var(--fire-orange);">U</div>
+    <div class="trust-cell-content"><div class="trust-cell-title">Use Your Body Wisdom</div><div class="trust-cell-body">Feel each option in your body. Notice expansion vs. contraction. Pay attention to gut feelings, not just logic.</div></div>
+    <div class="trust-cell-letter" style="color:var(--fire-red);">S</div>
+    <div class="trust-cell-content"><div class="trust-cell-title">Sense the Outcome</div><div class="trust-cell-body">Imagine yourself having chosen each option. How does your future self feel about the choice? Which path feels most aligned?</div></div>
+    <div class="trust-cell-letter" style="color:var(--fire-amber);">T</div>
+    <div class="trust-cell-content"><div class="trust-cell-title">Trust and Act</div><div class="trust-cell-body">Choose based on your inner guidance. Take action despite uncertainty. Trust the process even when the outcome is unclear.</div></div>
+  </div>
+
+  <div class="sec-eyebrow">/ Daily Intuition Practice</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="col-card">
+        <h3 style="color:var(--fire-amber);">/ Morning Check-In</h3>
+        <ul>
+          <li>2 minutes of quiet before your phone</li>
+          <li>Ask: "What does my intuition want me to know today?"</li>
+          <li>Write any impressions — don't filter</li>
+          <li>Set intention to notice intuitive nudges</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-orange);">/ Evening Review</h3>
+        <ul>
+          <li>What intuitive guidance did I receive today?</li>
+          <li>Did I follow it? What happened?</li>
+          <li>When did I override my intuition?</li>
+          <li>What patterns am I noticing?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="write-label">/ How does my intuition typically communicate with me?</div>
+    <textarea class="write-box" placeholder="Physical sensations? Sudden knowing? Images? A quiet voice? Emotions?" data-key="ch3-style"></textarea>
+    <div class="write-label">/ What topics or situations do I find it hardest to trust my intuition about?</div>
+    <textarea class="write-box" placeholder="Name them honestly." data-key="ch3-hard"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: BODY WISDOM
+══════════════════════════════════════════ -->
+<div class="page" id="page-body">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 4</div>
+  <div class="sec-title">Body Wisdom<br><em>Development</em></div>
+
+  <div class="card">
+    <p>Your body processes information faster than your conscious mind. It picks up on subtle cues in your environment, remembers past experiences, and signals you about safety, truth, and alignment — before your mind has had a chance to analyze anything. Learning to read these signals is one of the most powerful things you can do.</p>
+    <div class="flame-callout">Your gut has more neurons than your spinal cord. It's literally a second brain. You've just been taught to ignore it.</div>
+  </div>
+
+  <div class="sec-eyebrow">/ Your Body's Communication Channels</div>
+  <div class="two-col">
+    <div class="col-card">
+      <h3 style="color:var(--fire-amber);">/ Nervous System</h3>
+      <ul><li>Relaxation vs. tension</li><li>Expansion vs. contraction</li><li>Groundedness vs. anxiety</li><li>Energy vs. depletion</li></ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-orange);">/ Digestive System</h3>
+      <ul><li>Gut feelings and hunches</li><li>Nausea when something's wrong</li><li>Butterflies — excitement or dread</li><li>Appetite changes with emotion</li></ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-red);">/ Cardiovascular</h3>
+      <ul><li>Heart racing — fear or excitement</li><li>Heart opening with truth</li><li>Chest tightening with stress</li><li>Warmth spreading with joy</li></ul>
+    </div>
+    <div class="col-card">
+      <h3 style="color:var(--fire-yellow);">/ Muscular</h3>
+      <ul><li>Shoulder tension with burden</li><li>Jaw clenching with anger</li><li>Overall body relaxation with rightness</li><li>Restlessness with suppressed action</li></ul>
+    </div>
+  </div>
+
+  <div class="sec-eyebrow">/ Your Personal Body Dictionary</div>
+  <div class="card">
+    <p>This is yours alone. No one else's dictionary is right for your body. Fill in what you've noticed to be true for you.</p>
+    <div class="write-label">/ Tension — what body tension usually means for me</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Tight shoulders = ... / Clenched jaw = ... / Stomach knots = ..." data-key="ch4-tension"></textarea>
+    <div class="write-label">/ Expansion — what openness in my body usually signals</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Open chest = ... / Relaxed shoulders = ... / Deep easy breathing = ..." data-key="ch4-expansion"></textarea>
+    <div class="write-label">/ Energy — what my energy signals tell me</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Sudden fatigue = ... / Burst of energy = ... / Heaviness = ..." data-key="ch4-energy"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ The Body Scan — Interactive</div>
+  <div class="card">
+    <p>Click each zone to open a reflection field. Sit quietly, close your eyes, breathe, then scan slowly. Notice what's there without judgment.</p>
+    <div class="body-map">
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Head & Face</div>
+        <div class="body-zone-question">What sensations are here? Any tightness, pressure, warmth, clarity or fog?</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-head">
+      </div>
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Neck & Shoulders</div>
+        <div class="body-zone-question">Are you carrying something here? Tension, weight, or restriction?</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-neck">
+      </div>
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Chest & Heart</div>
+        <div class="body-zone-question">Open or closed? Heavy or light? What's your heart doing right now?</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-chest">
+      </div>
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Stomach & Gut</div>
+        <div class="body-zone-question">Your second brain. What is it saying? Settled or unsettled? Any sensation of knowing?</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-gut">
+      </div>
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Hips & Pelvis</div>
+        <div class="body-zone-question">Grounded or floating? Held or released? This is your stability center.</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-hips">
+      </div>
+      <div class="body-zone" onclick="toggleZone(this)">
+        <div class="body-zone-label">/ Legs & Feet</div>
+        <div class="body-zone-question">Restless or still? Connected to the ground or detached? What does this tell you?</div>
+        <input class="body-zone-input" type="text" placeholder="What is this area trying to tell you?" data-key="scan-legs">
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-eyebrow">/ The Yes/No Body Test</div>
+  <div class="card">
+    <div class="card-title">How to Calibrate Your Body's Response</div>
+    <ul class="n-list">
+      <li>Stand with feet hip-width apart, arms relaxed at your sides.</li>
+      <li>Think of something you know is absolutely true for you. Notice your body — slight forward lean, expansion in chest, lightness, stability. <strong>This is your body's YES.</strong></li>
+      <li>Clear and reset. Take a breath and shake it out.</li>
+      <li>Think of something you know is false. Notice — slight backward pull, contraction, heaviness, instability. <strong>This is your body's NO.</strong></li>
+      <li>Practice with simple questions first. Then use it for real decisions.</li>
+    </ul>
+    <div class="write-label">/ What I noticed about my body's YES response</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Describe it specifically — where do you feel it, what does it feel like?" data-key="ch4-yes"></textarea>
+    <div class="write-label">/ What I noticed about my body's NO response</div>
+    <textarea class="write-box" style="min-height:70px;" placeholder="Same — be specific and personal." data-key="ch4-no"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: DECISIONS
+══════════════════════════════════════════ -->
+<div class="page" id="page-decisions">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 5</div>
+  <div class="sec-title">Decision-Making<br><em>Confidence</em></div>
+
+  <div class="sec-eyebrow">/ The <a href="https://www.skool.com/respark" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Respark</a> Framework</div>
+  <div class="card">
+    <p>Every letter of RESPARK maps to a phase of the inner work — and a phase of trusting your decisions.</p>
+    <div style="margin-top:20px;">
+      <div class="respark-row"><div class="respark-letter">R</div><div class="respark-content"><div class="respark-name">Remember Who You Are</div><div class="respark-body">Identity, values, self-awareness. Every decision rooted here is a decision you can stand behind.</div></div></div>
+      <div class="respark-row"><div class="respark-letter">E</div><div class="respark-content"><div class="respark-name">Examine Your Patterns</div><div class="respark-body">Conditioning, trauma responses, beliefs. See which patterns are driving the choice — and whether they're actually yours.</div></div></div>
+      <div class="respark-row"><div class="respark-letter">S</div><div class="respark-content"><div class="respark-name">Stabilize Your Emotions</div><div class="respark-body">Nervous system, resilience, boundaries. You can't hear your inner voice clearly in a dysregulated state.</div></div></div>
+      <div class="respark-row"><div class="respark-letter">P</div><div class="respark-content"><div class="respark-name">Pursue Honest Connection</div><div class="respark-body">Communication, conflict, leadership. Decisions made from honest connection — with yourself and others — hold.</div></div></div>
+      <div class="respark-row"><div class="respark-letter">A</div><div class="respark-content"><div class="respark-name">Align Your Life</div><div class="respark-body">Purpose, career, health, money, faith. Is this choice aligned with the life you're actually building?</div></div></div>
+      <div class="respark-row"><div class="respark-letter">R</div><div class="respark-content"><div class="respark-name">Rebuild Intentionally</div><div class="respark-body">Habits, systems, environment. Decisions create structure. Is this one building the structure you want?</div></div></div>
+      <div class="respark-row" style="border-bottom:none;"><div class="respark-letter">K</div><div class="respark-content"><div class="respark-name">Keep the Fire Burning</div><div class="respark-body">Integration, community, legacy. Will you still stand behind this choice in a year? In ten?</div></div></div>
+    </div>
+  </div>
+
+  <div class="sec-eyebrow">/ Your Values Compass</div>
+  <div class="card">
+    <div class="card-title">Values Clarification</div>
+    <p style="margin-bottom:20px;">Every significant decision filters through your values whether you realize it or not. Name yours clearly so you can use them deliberately.</p>
+    <div class="write-label">/ My top 5 values right now (in order if possible)</div>
+    <textarea class="write-box" style="min-height:100px;" placeholder="Integrity, freedom, connection, growth, family — whatever is real for you. Don't write what sounds good." data-key="ch5-values"></textarea>
+    <div class="write-label">/ A current decision — filtered through these values. Which option honors them most?</div>
+    <textarea class="write-box" placeholder="Work through it here. No performance." data-key="ch5-valuefilter"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Working Through Decision Paralysis</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="col-card">
+        <h3 style="color:var(--fire-amber);">/ The Coin Flip Method</h3>
+        <ul>
+          <li>Assign each option to heads or tails</li>
+          <li>Flip the coin</li>
+          <li>Notice your immediate reaction</li>
+          <li>Disappointed or relieved? That's your answer.</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-orange);">/ The Good Enough Method</h3>
+        <ul>
+          <li>Most decisions are reversible</li>
+          <li>Choose what feels "good enough"</li>
+          <li>Action over perfection</li>
+          <li>You can adjust course as you learn</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-red);">/ The Time Box</h3>
+        <ul>
+          <li>Set a specific time limit to decide</li>
+          <li>Gather what you can within it</li>
+          <li>Make the best call available</li>
+          <li>Trust that you can course-correct</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-yellow);">/ The Worst Case</h3>
+        <ul>
+          <li>Name the worst possible outcome of each option</li>
+          <li>Ask: "Could I handle this?"</li>
+          <li>The worst case is rarely as bad as imagined</li>
+          <li>Choose the one you can most easily accept</li>
+        </ul>
+      </div>
+    </div>
+    <div class="write-label">/ A decision I'm currently avoiding — and what's actually stopping me</div>
+    <textarea class="write-box" placeholder="Name it. Then name the real thing underneath." data-key="ch5-avoiding"></textarea>
+    <div class="write-label">/ What would I decide if I knew I could handle whatever came from it?</div>
+    <textarea class="write-box" placeholder="Answer from that place." data-key="ch5-handle"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: AUTHORITY
+══════════════════════════════════════════ -->
+<div class="page" id="page-authority">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 6</div>
+  <div class="sec-title">Internal vs. External<br><em>Authority</em></div>
+
+  <div class="flame-callout" style="margin-bottom:32px;">Internal authority means trusting yourself as the primary expert on your own life — while staying genuinely open to valuable input from others. The key word is primary.</div>
+
+  <div class="sec-eyebrow">/ Recognizing False Authority</div>
+  <div class="compare-wrap">
+    <div class="compare-col">
+      <div class="compare-head left">Healthy Influence</div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head right">Unhealthy Influence</div>
+    </div>
+    <div class="compare-row"><div class="compare-cell">Respects your autonomy to decide</div><div class="compare-cell">Tries to control your choices</div></div>
+    <div class="compare-row"><div class="compare-cell">Offers perspective without attachment</div><div class="compare-cell">Uses guilt, fear, or manipulation</div></div>
+    <div class="compare-row"><div class="compare-cell">Asks good questions to help you think</div><div class="compare-cell">Gets upset when you don't comply</div></div>
+    <div class="compare-row"><div class="compare-cell">Supports your growth</div><div class="compare-cell">Insists their way is the only way</div></div>
+    <div class="compare-row"><div class="compare-cell">Accepts your decision even in disagreement</div><div class="compare-cell">Has a personal agenda in your choice</div></div>
+    <div class="compare-row"><div class="compare-cell">Honest about their own limitations</div><div class="compare-cell">Claims to know what's best for you</div></div>
+  </div>
+
+  <div class="sec-eyebrow">/ Influence Inventory</div>
+  <div class="card">
+    <p>List the people who regularly give you advice or try to influence your decisions. Be honest about what kind of influence they actually are.</p>
+    <div class="write-label">/ Person 1 — and the type of influence they carry</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Name, type of influence (healthy/unhealthy), how they make you feel, how you want to handle it." data-key="ch6-person1"></textarea>
+    <div class="write-label">/ Person 2</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Same format." data-key="ch6-person2"></textarea>
+    <div class="write-label">/ Person 3 (if applicable)</div>
+    <textarea class="write-box" style="min-height:80px;" placeholder="Same format." data-key="ch6-person3"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ Setting Boundaries with Others' Opinions</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="col-card">
+        <h3 style="color:var(--fire-amber);">/ Gentle Redirect</h3>
+        <ul>
+          <li>"I hear your perspective"</li>
+          <li>"I appreciate you sharing that"</li>
+          <li>"I'm still thinking about it"</li>
+          <li>"I need to make this decision myself"</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3 style="color:var(--fire-red);">/ Clear Boundary</h3>
+        <ul>
+          <li>"I appreciate your concern, but I've got this"</li>
+          <li>"I'm not looking for input right now — just support"</li>
+          <li>"I won't be discussing this decision further"</li>
+          <li>"I understand you disagree. This is my decision."</li>
+        </ul>
+      </div>
+    </div>
+    <div class="write-label">/ A boundary I need to set around someone else's influence on my decisions</div>
+    <textarea class="write-box" placeholder="Name the situation. Then write what you actually want to say." data-key="ch6-boundary"></textarea>
+    <div class="write-label">/ What would change in my relationships if I fully trusted my internal authority?</div>
+    <textarea class="write-box" placeholder="Both what you'd gain and what might shift." data-key="ch6-change"></textarea>
+  </div>
+
+  <div class="sec-eyebrow">/ The Inner Council</div>
+  <div class="card">
+    <div class="card-title">Accessing Wisdom From Different Parts of Yourself</div>
+    <p>When facing a significant decision, you can run it through your own internal council — different aspects of yourself, each with something real to offer.</p>
+    <div class="voice-types">
+      <div class="voice-card"><h4>The Wise Elder</h4><p>Your accumulated wisdom. What do you know from everything you've lived?</p></div>
+      <div class="voice-card"><h4>The Courageous One</h4><p>Your brave self. What would you choose if fear wasn't calling the shots?</p></div>
+      <div class="voice-card"><h4>The Loving Heart</h4><p>Your compassionate self. What does love — for yourself and others — say?</p></div>
+      <div class="voice-card"><h4>The Intuitive Oracle</h4><p>Your knowing self. Beneath the analysis — what do you already know?</p></div>
+    </div>
+    <div class="write-label">/ Run a current decision through your inner council. What does each one say?</div>
+    <textarea class="write-box" style="min-height:140px;" placeholder="The Wise Elder says... / The Courageous One says... / The Loving Heart says... / The Oracle says..." data-key="ch6-council"></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: 30-DAY CHALLENGE
+══════════════════════════════════════════ -->
+<div class="page" id="page-challenge">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 7</div>
+  <div class="sec-title">The 30-Day<br><em>Self-Trust Challenge</em></div>
+
+  <div class="card" style="margin-bottom:36px;">
+    <p>This program builds self-trust through daily practices that gradually increase in complexity and depth. Work through them in order. Mark each day complete as you go — your progress saves automatically.</p>
+    <div class="flame-callout">Self-trust isn't switched on by a decision. It's built by a thousand small acts of choosing yourself — one day at a time.</div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-label">WEEK 1 — Foundation Building</div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day1">
+      <div class="day-num">DAY 01</div><div class="day-content"><div class="day-title">Self-Trust Assessment</div><div class="day-desc">Complete the assessment in the "Inner Voice" chapter to establish your baseline. Write your score and what surprised you.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day2">
+      <div class="day-num">DAY 02</div><div class="day-content"><div class="day-title">Morning Intention</div><div class="day-desc">Before your phone: "Today I will trust my judgment about ___." Write your intention and reflect tonight.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day3">
+      <div class="day-num">DAY 03</div><div class="day-content"><div class="day-title">Body Wisdom Practice</div><div class="day-desc">Three times today, pause and ask your body: "How do you feel about this?" Notice and record the responses.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day4">
+      <div class="day-num">DAY 04</div><div class="day-content"><div class="day-title">Small Decision Practice</div><div class="day-desc">Make five small decisions based purely on your first instinct. What to eat, wear, listen to, do first — no deliberating.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day5">
+      <div class="day-num">DAY 05</div><div class="day-content"><div class="day-title">Validation Fast</div><div class="day-desc">Don't ask anyone else's opinion about anything today. Notice your discomfort. Sit with it instead of relieving it.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day6">
+      <div class="day-num">DAY 06</div><div class="day-content"><div class="day-title">Energy Reading</div><div class="day-desc">Practice reading the energy of three different situations today. Trust your first impressions. Note what you noticed.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day7">
+      <div class="day-num">DAY 07</div><div class="day-content"><div class="day-title">Week 1 Reflection</div><div class="day-desc">Journal: What did you learn about your self-trust this week? What was harder than expected? What surprised you?</div></div><div class="day-check"></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-label">WEEK 2 — Building Confidence</div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day8">
+      <div class="day-num">DAY 08</div><div class="day-content"><div class="day-title">Medium Decision Practice</div><div class="day-desc">Make one medium-sized decision based on your inner guidance — where to eat, which project to tackle first, how to spend your evening.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day9">
+      <div class="day-num">DAY 09</div><div class="day-content"><div class="day-title">Boundary Practice</div><div class="day-desc">Set one small boundary based on your internal knowing — say no to a request, ask for what you actually need.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day10">
+      <div class="day-num">DAY 10</div><div class="day-content"><div class="day-title">Intuition Test</div><div class="day-desc">Make a prediction about something happening today based on your intuition. Check it. What does this tell you about your accuracy?</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day11">
+      <div class="day-num">DAY 11</div><div class="day-content"><div class="day-title">Past Success Review</div><div class="day-desc">Write about three times when trusting yourself led to good outcomes. Build the evidence base for your trustworthiness.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day12">
+      <div class="day-num">DAY 12</div><div class="day-content"><div class="day-title">Self-Soothing Practice</div><div class="day-desc">When you feel anxious or uncertain today, soothe yourself — breathe, ground, journal — instead of seeking external reassurance.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day13">
+      <div class="day-num">DAY 13</div><div class="day-content"><div class="day-title">Values-Based Choice</div><div class="day-desc">Make one decision today based purely on your values, regardless of what others might think. Notice how it feels.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day14">
+      <div class="day-num">DAY 14</div><div class="day-content"><div class="day-title">Week 2 Reflection</div><div class="day-desc">Journal: What's becoming easier? Where are you still reaching for external input? What's your biggest win this week?</div></div><div class="day-check"></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-label">WEEK 3 — Expanding Trust</div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day15">
+      <div class="day-num">DAY 15</div><div class="day-content"><div class="day-title">Bigger Decision Practice</div><div class="day-desc">Make one significant decision based on your inner guidance — work-related, relationship-related, or personal direction.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day16">
+      <div class="day-num">DAY 16</div><div class="day-content"><div class="day-title">Uncomfortable Truth</div><div class="day-desc">Acknowledge one uncomfortable truth about your life that you've been avoiding. Just name it. You don't have to solve it today.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day17">
+      <div class="day-num">DAY 17</div><div class="day-content"><div class="day-title">Spontaneous Adventure</div><div class="day-desc">Do something spontaneous based purely on what feels right in the moment. Let your inner voice lead without a plan.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day18">
+      <div class="day-num">DAY 18</div><div class="day-content"><div class="day-title">Difficult Conversation</div><div class="day-desc">Have one conversation you've been avoiding. Trust yourself to handle it. Notice what your inner voice says afterwards.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day19">
+      <div class="day-num">DAY 19</div><div class="day-content"><div class="day-title">Creative Expression</div><div class="day-desc">Express yourself creatively in some way — no editing, no judgment. Trust your creative instincts to lead.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day20">
+      <div class="day-num">DAY 20</div><div class="day-content"><div class="day-title">Fear Facing</div><div class="day-desc">Do one thing that scares you but feels right — trusting your ability to handle whatever the outcome brings.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day21">
+      <div class="day-num">DAY 21</div><div class="day-content"><div class="day-title">Week 3 Reflection</div><div class="day-desc">Journal: How has your relationship with uncertainty changed? What did you do this week that you couldn't have three weeks ago?</div></div><div class="day-check"></div>
+    </div>
+  </div>
+
+  <div class="week-block">
+    <div class="week-label">WEEK 4 — Integration & Mastery</div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day22">
+      <div class="day-num">DAY 22</div><div class="day-content"><div class="day-title">Major Life Review</div><div class="day-desc">Review one major area of your life and trust your honest assessment of what needs to change. Don't soften it.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day23">
+      <div class="day-num">DAY 23</div><div class="day-content"><div class="day-title">Future Visioning</div><div class="day-desc">Create a vision for your future based on your inner knowing — not others' expectations. What does your authentic life actually look like?</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day24">
+      <div class="day-num">DAY 24</div><div class="day-content"><div class="day-title">Relationship Boundary</div><div class="day-desc">Set one important boundary in a relationship, trusting your right to do so — and your ability to hold it.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day25">
+      <div class="day-num">DAY 25</div><div class="day-content"><div class="day-title">Career/Work Decision</div><div class="day-desc">Make one decision about your work or direction based on your inner guidance. Let your values, not fear, lead.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day26">
+      <div class="day-num">DAY 26</div><div class="day-content"><div class="day-title">Financial Choice</div><div class="day-desc">Make one financial decision based on your values and inner knowing. Notice what it feels like to trust yourself here.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day27">
+      <div class="day-num">DAY 27</div><div class="day-content"><div class="day-title">Health Decision</div><div class="day-desc">Make one health-related choice based on your body's wisdom. What is your body actually asking for?</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day28">
+      <div class="day-num">DAY 28</div><div class="day-content"><div class="day-title">Life Change Commitment</div><div class="day-desc">Commit to one change your inner voice has been calling for. Write it down. Name a first step.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day29">
+      <div class="day-num">DAY 29</div><div class="day-content"><div class="day-title">Trust Celebration</div><div class="day-desc">Celebrate all the ways you've grown in self-trust over the past month. Don't minimize it. Actually acknowledge it.</div></div><div class="day-check"></div>
+    </div>
+    <div class="day-item" onclick="toggleDay(this)" data-key="day30">
+      <div class="day-num">DAY 30</div><div class="day-content"><div class="day-title">Future Commitment</div><div class="day-desc">Write a letter to yourself committing to continued self-trust practice. Date it. Return to it in 90 days.</div></div><div class="day-check"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="write-label">/ My biggest insight from the 30-day challenge</div>
+    <textarea class="write-box" data-key="ch7-insight" placeholder="What did you learn about yourself that you didn't know before?"></textarea>
+    <div class="write-label">/ What I'm committing to continuing beyond day 30</div>
+    <textarea class="write-box" data-key="ch7-commit" placeholder="Name the specific practices. Be concrete."></textarea>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: DECLARATION
+══════════════════════════════════════════ -->
+<div class="page" id="page-declaration">
+<div class="wrap">
+  <div class="sec-eyebrow" style="margin-top:0;">/ Chapter 8 — Final</div>
+  <div class="sec-title">Your Inner Voice<br><em>Declaration</em></div>
+
+  <div class="card" style="margin-bottom:32px;">
+    <p>This is the final piece. Not a test. Not a performance. A commitment you make to yourself when you're ready — in your own words, in your own time. There's no deadline on this one.</p>
+    <div class="flame-callout">You don't need permission to trust yourself. You never did.</div>
+  </div>
+
+  <div class="declaration">
+    <h2>My <em>Declaration</em></h2>
+
+    <div class="decl-field">
+      <label>/ My name</label>
+      <input class="decl-input" type="text" placeholder="Write your name" data-key="decl-name">
+    </div>
+
+    <div class="decl-field">
+      <label>/ I commit to trusting my inner voice because</label>
+      <textarea class="decl-input" placeholder="Write the real reason — the one that means something to you specifically." data-key="decl-why"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ I understand that my inner wisdom</label>
+      <textarea class="decl-input" placeholder="What do you now know about your inner wisdom that you didn't when you started?" data-key="decl-wisdom"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ When I feel uncertain, I will</label>
+      <textarea class="decl-input" placeholder="Name your specific practice. Ground, breathe, body scan, return to values..." data-key="decl-uncertain"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ When others disagree with my guidance, I will</label>
+      <textarea class="decl-input" placeholder="Name your response — not what you think you should say, but what you will actually do." data-key="decl-pushback"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ My daily practices for self-trust are</label>
+      <textarea class="decl-input" placeholder="Name them concretely. Morning, evening, weekly." data-key="decl-practices"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ My vision for living from my truth is</label>
+      <textarea class="decl-input" style="min-height:140px;" placeholder="Write it in present tense, as if it's already true. Not 'I want to' — 'I am.'" data-key="decl-vision"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ I trust myself to</label>
+      <textarea class="decl-input" placeholder="Complete this. Make it specific and real." data-key="decl-trust"></textarea>
+    </div>
+
+    <div class="decl-field">
+      <label>/ Date signed</label>
+      <input class="decl-input" type="text" placeholder="Today's date" data-key="decl-date">
+    </div>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyDeclaration()">Copy for AI Reflection</button>
+  </div>
+
+  <div class="card" style="margin-top:48px;">
+    <div class="card-title">What You Built Here</div>
+    <p>By completing this Artifact, you've done something most people never do — you've gotten serious about your own inner life. You've named the voices that aren't yours, built tools for hearing the one that is, and committed to a daily practice of choosing yourself.</p>
+    <div class="flame-callout">Your inner voice has been waiting your whole life for this moment. It's been here the whole time. Now you know how to listen.</div>
+    <p>Bring what you've built here into the live coaching calls. Into the community. Into the campfire. This is where the real integration happens — not alone, but in relationship with people doing the same work.</p>
+    <p style="color:var(--ink-faint);font-size:14px;margin-top:16px;">— Alena & Orlando · <a href="https://www.skool.com/respark" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Respark</a></p>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <a class="footer-brand" href="https://www.skool.com/respark" target="_blank" rel="noopener">Respark</a>
+    <div class="footer-links">
+      <a href="https://resparkskool.github.io/legal#privacy" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://resparkskool.github.io/legal#terms" target="_blank" rel="noopener">Terms of Service</a>
+      <a href="https://resparkskool.github.io/legal#disclaimer" target="_blank" rel="noopener">Disclaimer</a>
+      <a href="https://resparkskool.github.io/legal#cookies" target="_blank" rel="noopener">Cookie Policy</a>
+    </div>
+    <div class="footer-address">
+      30 North Gould Street, Suite R · Sheridan, WY 82801
+      &nbsp;·&nbsp;
+      <a href="mailto:respark.skool@gmail.com">respark.skool@gmail.com</a>
+    </div>
+    <div class="footer-copy">© 2026 Respark · All rights reserved</div>
+  </div>
+</footer>
+
+<!-- SAVE PILL -->
+<div class="save-pill" id="savePill">SAVED</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <span class="progress-label">/ Progress</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="progress-pct" id="progressPct">0%</span>
+</div>
+
+<script>
+const STORAGE_KEY = 'respark-inner-voice-v2';
+let data = {};
+let saveTimeout;
+
+// ── LOAD
+try {
+  data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  // Restore text areas / inputs
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const v = data[el.dataset.key];
+    if (!v) return;
+    if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') el.value = v;
+  });
+  // Restore check items
+  document.querySelectorAll('.check-item').forEach((el,i) => {
+    if (data['check-'+i]) el.classList.add('checked');
+  });
+  // Restore day items
+  document.querySelectorAll('.day-item').forEach(el => {
+    const k = el.dataset.key;
+    if (k && data['day-'+k]) el.classList.add('done');
+  });
+  // Restore score buttons
+  document.querySelectorAll('.assess-item').forEach((el, i) => {
+    const v = data['score-'+i];
+    if (v) {
+      el.querySelectorAll('.score-btn').forEach(b => {
+        b.classList.toggle('selected', b.textContent == v);
+      });
+    }
+  });
+  // Restore body zones
+  document.querySelectorAll('.body-zone-input').forEach(el => {
+    const v = data[el.dataset.key];
+    if (v) { el.value = v; el.closest('.body-zone').classList.add('active'); }
+  });
+} catch(e) {}
+
+// ── SAVE
+function save(key, val) {
+  data[key] = val;
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+    const pill = document.getElementById('savePill');
+    pill.classList.add('show');
+    setTimeout(() => pill.classList.remove('show'), 1500);
+    updateProgress();
+  }, 500);
+}
+
+// ── AUTO SAVE all write boxes
+document.querySelectorAll('.write-box, .decl-input, .body-zone-input').forEach(el => {
+  el.addEventListener('input', () => save(el.dataset.key, el.value));
+});
+
+// ── NAV
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + btn.dataset.page);
+    if (target) { target.classList.add('active'); window.scrollTo(0,0); }
+  });
+});
+
+// ── TOGGLE CHECK ITEMS
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  document.querySelectorAll('.check-item').forEach((item, i) => {
+    save('check-'+i, item.classList.contains('checked') ? '1' : '');
+  });
+}
+
+// ── TOGGLE DAY
+function toggleDay(el) {
+  el.classList.toggle('done');
+  const k = el.dataset.key;
+  if (k) save('day-'+k, el.classList.contains('done') ? '1' : '');
+  updateProgress();
+}
+
+// ── BODY ZONE TOGGLE
+function toggleZone(el) {
+  el.classList.toggle('active');
+}
+
+// ── SCORE BUTTONS
+function buildScoreBtns() {
+  document.querySelectorAll('.assess-item').forEach((item, i) => {
+    const wrap = item.querySelector('.score-btns');
+    if (!wrap || wrap.children.length) return;
+    [1,2,3,4,5].forEach(n => {
+      const b = document.createElement('button');
+      b.className = 'score-btn';
+      b.textContent = n;
+      const saved = data['score-'+i];
+      if (saved && parseInt(saved) === n) b.classList.add('selected');
+      b.addEventListener('click', () => {
+        wrap.querySelectorAll('.score-btn').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
+        save('score-'+i, String(n));
+        calcScore();
+      });
+      wrap.appendChild(b);
+    });
+  });
+}
+buildScoreBtns();
+
+function calcScore() {
+  let total = 0, count = 0;
+  document.querySelectorAll('.assess-item').forEach((item, i) => {
+    const sel = item.querySelector('.score-btn.selected');
+    if (sel) { total += parseInt(sel.textContent); count++; }
+  });
+  if (count === 0) return;
+  const res = document.getElementById('score-result-1');
+  const tot = document.getElementById('score-total-1');
+  const lbl = document.getElementById('score-label-1');
+  const desc = document.getElementById('score-desc-1');
+  res.classList.add('visible');
+  const max = count * 5;
+  tot.textContent = total + ' / ' + max;
+  const pct = total / max;
+  if (pct >= 0.8) { lbl.textContent = 'Strong inner voice connection'; desc.textContent = 'You have solid self-trust foundations. This work will deepen and refine what you already know.'; }
+  else if (pct >= 0.6) { lbl.textContent = 'Moderate connection — real room to grow'; desc.textContent = 'You have access to your inner voice in some areas but are cut off in others. This work will clarify where and why.'; }
+  else if (pct >= 0.4) { lbl.textContent = 'Weak connection — significant work ahead'; desc.textContent = 'Your inner voice is there, but the static is loud. The practices in this Artifact are exactly what you need.'; }
+  else { lbl.textContent = 'Very weak connection — this is your priority'; desc.textContent = 'This is where the work begins. Don\'t be discouraged by this number — awareness is the first step. You\'re here.'; }
+}
+calcScore();
+
+// ── PROGRESS
+function updateProgress() {
+  let done = 0, total = 0;
+  // days
+  document.querySelectorAll('.day-item').forEach(el => {
+    total++; if (el.classList.contains('done')) done++;
+  });
+  // write boxes with content
+  document.querySelectorAll('.write-box, .decl-input').forEach(el => {
+    total++; if (el.value && el.value.trim().length > 3) done++;
+  });
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+updateProgress();
+
+// ── COPY FOR AI
+function copyDeclaration() {
+  const fields = ['decl-name','decl-why','decl-wisdom','decl-uncertain','decl-pushback','decl-practices','decl-vision','decl-trust','decl-date'];
+  const labels = ['Name','I commit because','My inner wisdom','When uncertain I will','When others disagree I will','My daily practices','My vision for living my truth','I trust myself to','Date'];
+  let text = 'RESPARK — MY INNER VOICE DECLARATION\n\n';
+  fields.forEach((k, i) => {
+    const el = document.querySelector('[data-key="'+k+'"]');
+    if (el && el.value) text += labels[i] + ':\n' + el.value + '\n\n';
+  });
+  text += '\n[Prompt for AI reflection: Please read this declaration and help me reflect on any patterns, blind spots, or areas that might need deeper exploration. Ask me one question at a time.]';
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied to Clipboard';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy for AI Reflection'; btn.classList.remove('copied'); }, 2500);
+  }).catch(() => {
+    alert('Copy failed — please manually copy your declaration text.');
+  });
+}
+</script>
+
+</body>
+</html>
